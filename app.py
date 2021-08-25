@@ -31,20 +31,31 @@ con = psycopg2.connect(
 
 cur = con.cursor()
 
+
 # API endpoints:
 @app.route('/')
 def hello():
     return 'Hello!'
 
+
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
+
 
 @app.route('/products')
 def get_products():
     cur.execute('SELECT * FROM products')
     rows = cur.fetchall()
     return json.dumps(rows)
+
+# GET: X amount of products
+@app.route('/products/<int:start>/<int:end>')
+def get_by_id(start=None, end=None):
+    cur.execute(f'SELECT * FROM products LIMIT {start},{end}')
+    rows = cur.fetchall()
+    return json.dumps(rows)
+
 
 @app.route('/orders')
 def get_orders():

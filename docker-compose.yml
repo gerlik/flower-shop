@@ -3,18 +3,23 @@ version: '3'
 services:
   postgres:
     environment:
-        - POSTGRES_USER=root
-        - POSTGRES_DB=postgres
-        - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
     image: postgres
     ports:
       - "5432:5432"
     restart: always
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
-#      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
 
   web:
-    build: .
+    build: ./src
     ports:
-      - "8080:5000"
+      - "8080:8080"
+#    volumes:
+#      - ./frontend:/code
+    depends_on:
+      - postgres

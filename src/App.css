@@ -1,0 +1,19 @@
+.App {
+  padding: 30px;
+}
+
+table tr td{
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #c9fff5;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #c9fff5;
+}
+
+
