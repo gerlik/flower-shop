@@ -18,5 +18,4 @@ commands are needed -> make better folder structure, src+public+package.json to 
 instead, product.id, product.name, etc
 * Pagination
 * More endpoints & popularity by orders
-* Rearrange database so one order can contain multiple products
 
