@@ -13,16 +13,17 @@ alter table products
 
 create table orders
 (
-    product_id integer   not null
-        constraint orders_products_id_fk
-            references products,
+    id         integer   not null
+        constraint orders_pk
+            primary key,
     order_time timestamp not null,
     quantity   integer   not null,
     subtotal   numeric   not null,
     total      numeric   not null,
-    id         integer   not null
-        constraint orders_pk
-            primary key
+    product_id integer   not null
+        constraint orders_products_id_fk
+            references products
+
 );
 
 alter table orders
