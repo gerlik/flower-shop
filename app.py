@@ -59,7 +59,7 @@ def get_by_id(start=None, end=None):
 
 @app.route('/orders')
 def get_orders():
-    cur.execute('SELECT * FROM orders')
+    cur.execute('SELECT * FROM order_items')
     rows = cur.fetchall()
     return json.dumps(rows)
 
